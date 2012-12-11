@@ -313,7 +313,7 @@ pre {
     display: inline-block;
     font-size: 24px;
     position: absolute;
-    bottom: -4em;
+    bottom: -2em;
     right: 0em;
 
     -webkit-transition: 0.5s;
@@ -339,6 +339,32 @@ pre {
     -ms-transition-delay:     1.25s;
     -o-transition-delay:      1.25s;
     transition-delay:         1.25s;
+}
+
+
+.awesome {
+    bottom: 0em;
+    right: 7em;
+}
+
+#aboutsalt.present .appearing {
+    -webkit-transform: scale(2,2);
+    -moz-transform:    scale(2,2);
+    -ms-transform:     scale(2,2);
+    -o-transform:      scale(2,2);
+    transform:         scale(2,2);
+
+    -webkit-transition-delay: 1.25s;
+    -moz-transition-delay:    1.25s;
+    -ms-transition-delay:     1.25s;
+    -o-transition-delay:      1.25s;
+    transition-delay:         1.25s;
+
+    -webkit-transition-timing-function: ease-out;
+    -moz-transition-timing-function:    ease-out;
+    -ms-transition-timing-function:     ease-out;
+    -o-transition-timing-function:      ease-out;
+    transition-timing-function:         ease-out;
 }
 
 div.step.present pre {
