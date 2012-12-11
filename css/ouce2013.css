@@ -82,7 +82,7 @@ table {
     want to leave anybody behind.
 */
 body {
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'Oxygen', sans-serif;
     min-height: 740px;
     
     background: rgb(215, 215, 215);
@@ -123,6 +123,21 @@ a:focus {
     background: rgba(255,255,255,1);
     text-shadow: -1px -1px 2px rgba(100,100,100,0.5);
 }
+
+/* fix list items */
+li {
+    list-style: square;
+    overflow-wrap: normal;
+    overflow: visible;
+}
+
+
+pre {
+    overflow: hidden;
+    font-family: courier;
+    font-size: 20px;
+}
+
 
 /*
     Because the main point behind the impress.js demo is to demo impress.js
@@ -175,7 +190,7 @@ a:focus {
     -o-box-sizing:      border-box;
     box-sizing:         border-box;
 
-    font-family: 'PT Serif', georgia, serif;
+    font-family: 'Oxygen', georgia, serif;
     font-size: 48px;
     line-height: 1.5;
 }
@@ -221,7 +236,7 @@ a:focus {
     color: rgb(102, 102, 102);
     text-shadow: 0 2px 2px rgba(0, 0, 0, .1);
 
-    font-family: 'Open Sans', Arial, sans-serif;
+    font-family: 'Oxygen', Arial, sans-serif;
     font-size: 30px;
     line-height: 36px;
     letter-spacing: -1px;
@@ -252,33 +267,46 @@ a:focus {
 
 #start {
     padding: 0;
+    font-family: "Sonsie One";
+    overflow: visible;
 }
 
 #start .withsalt {
     font-size: 44px;
-
-    -webkit-transform: translateZ(20px);
-    -moz-transform:    translateZ(20px);
-    -ms-transform:     translateZ(20px);
-    -o-transform:      translateZ(20px);
-    transform:         translateZ(20px);
+    color: #00A0D9;
+    text-shadow: -1px -1px 2px rgba(100,100,100,0.9);
 }
 
 #start .maintitle {
     font-size: 60px;
-    
-    -webkit-transform: translateZ(50px);
-    -moz-transform:    translateZ(50px);
-    -ms-transform:     translateZ(50px);
-    -o-transform:      translateZ(50px);
-    transform:         translateZ(50px);
+    color: #00A0D9;
+    text-shadow: -1px -1px 2px rgba(100,100,100,0.9);
 }
 
 #start .footnote {
+    font-family: "Oxygen";
     font-size: 28px;
     position: absolute;
     bottom: -4em;
     right: -2em;
+}
+
+#start.present {
+    opacity: 1;
+}
+
+/* make the first slide invisible when we move past it */
+#start.past {
+    opacity: 0;
+}
+
+/* classes suitable for smaller blocks of text, like explanations, tips, etc */
+.smaller {
+    font-size: 70%;
+}
+
+.verysmall {
+    font-size: 50%;
 }
 
 .tip {
@@ -313,11 +341,10 @@ a:focus {
     transition-delay:         1.25s;
 }
 
-#scenario li {
-    list-style: square;
-    overflow-wrap: normal;
+div.step.present pre {
     overflow: visible;
 }
+
 
 
 /*

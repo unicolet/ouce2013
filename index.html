@@ -63,7 +63,7 @@
     
 -->
 
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1024" />
@@ -74,7 +74,8 @@
     <meta name="author" content="Umberto Nicoletti" />
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
-
+    <link href='http://fonts.googleapis.com/css?family=Sonsie+One' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
     <!--
         
         Impress.js doesn't depend on any external stylesheet. Script adds all styles it needs for
@@ -161,7 +162,7 @@
         It will not be rotated or scaled.
         
     -->
-    <div id="start" class="step" data-x="0" data-y="0" data-scale="2">
+    <div id="start" class="step" data-x="0" data-y="0" data-z="10" data-scale="4">
         <span class="maintitle">
             OpenNMS, meet Configuration Management
         </span>
@@ -169,13 +170,13 @@
         <span class="footnote">OUCE 2013 - <a href="https://twitter.com/AFactotum">@afactotum</a></span>
     </div>
 
-    <div id="theprinciple" class="step" data-x="-1500" data-y="0">
+    <div id="theprinciple" class="step" data-x="-2000" data-y="0">
         <q>My principle: do more while actually doing less</q>
 
-        <span class="tip rotating">hint: automate</span>
+        <span class="tip rotating">hint: integrate, automate</span>
     </div>
 
-    <div id="scenario" class="step" data-x="-1500" data-y="-500">
+    <div id="scenario" class="step" data-x="-2000" data-y="-500">
         <p>Ingredients:</p>
             <ul>
                 <li class="onms">OpenNMS</li>
@@ -185,6 +186,83 @@
             </ul>
     </div>
 
+    <div id="options" class="step" data-x="-1500" data-y="-1000">
+        <p>Overview of our options:</p>
+            <ul>
+                <li class="onms">New suspect</li>
+                <li class="salt">DNS importer</li>
+                <li class="vsphere">Returners</li>
+                <li class="script">Events/Reactors</li>
+            </ul>
+    </div>
+
+    <div id="newsuspect" class="step" data-x="-800" data-y="-1100">
+        <p>Option 1: <b>new suspect</b></p>
+        <pre>
+#!/bin/bash
+KEYS=`salt-key -l acc --no-color | \
+        grep -v "Accepted Keys"`
+for k in $KEYS ; do
+ip=`ping -q -c 1 -t 1 $k | grep PING | \
+       awk '{print $3}' | sed -e "s/[\(\)]//g"`;
+/usr/share/opennms/bin/send-event.pl --interface $ip \
+       uei.opennms.org/internal/discovery/newSuspect;
+done
+        </pre>
+        <span class="smaller">add this script to crontab on salt master</span>
+    </div>
+
+    <div id="newsuspectdiscussion" class="step" data-x="-800" data-y="-1600">
+        <p><b>New suspect</b>: dis/advantages</p>
+            <ul>
+                <li>(too) simple and it works</li>
+                <li>unaware of provisioning</li>
+                <li>no metadata</li>
+                <li>no decommissioning</li>
+            </ul>
+    </div>
+
+
+    <div id="dns" class="step" data-x="100" data-y="-1100">
+        <p>Option 2: <b>DNS importer</b></p>
+            <ul>
+                <li>salt generates one or more zone files</li>
+                <li>opennms imports the zones</li>
+            </ul>
+        <pre id="onmsdnszone">
+&lt;requisition-def import-name="linuxservers"
+   import-url-resource="dns://salt/linuxservers"&gt;
+  &lt;cron-schedule&gt;0 0 0 * * ? *&lt;/cron-schedule&gt;
+&lt;/requisition-def&gt;
+        </pre>
+    </div>
+
+    <div id="dsnssalt" class="step" data-x="900" data-y="-900">
+        <p>DNS zone generation in <b>Salt</b></p>
+<pre id="saltdnszone">
+@ in soa localhost. root 1 3H 15M 1W 1D
+  ns localhost.
+{% set nets=salt['publish.publish']('*','network.interfaces') %}\
+{% for n in nets %}{% set pdata=salt['publish.publish'](n,'pillar.data') %}\
+{% if pdata.has_key(n) %}{% if pdata[n].has_key('zone') %}\
+{% if pdata[n]['zone']=='<span style="color: blue">linuxservers</span>' %}
+{{ n }} IN      A       {{ nets[n]['eth0']['inet'][0]['address'] }}
+{% endif %}{% endif %}{% endif %}{% endfor %}
+</pre>
+        <span class="verysmall">https://gist.github.com/3987451</span>
+    </div>
+
+    <div id="dsndiscussion" class="step" data-x="950" data-y="-1500">
+        <p><b>DNS</b>: dis/advantages</p>
+        <ul>
+            <li>no coding required</li>
+            <li>provisioning aware</li>
+            <li>still no metadata</li>
+            <li>still no decommissioning</li>
+        </ul>
+    </div>
+
+</div> <!-- close #impress -->
 
 <!--
     
