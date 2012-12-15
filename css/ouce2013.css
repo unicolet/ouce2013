@@ -397,6 +397,13 @@ a.redis {
     padding-left: 40px;
 }
 
+a.saltstack {
+    background-image: url(../media/salt-icon-32.png);
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left: 40px;
+}
+
 /*
     The last step is an overview.
     There is no content in it, so we make sure it's not visible because we want
