@@ -63,7 +63,7 @@
     
 -->
 
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1024" />
@@ -113,6 +113,8 @@
     
 -->
 <body class="impress-not-supported">
+
+<span id="prezlink">bit.ly/aaa</span>
 
 <!--
     For example this fallback message is only visible when there is `impress-not-supported` class on body.
@@ -171,7 +173,7 @@
     </div>
 
     <div id="theprinciple" class="step" data-x="-2000" data-y="0">
-        <q>My principle: do more while actually doing less</q>
+        <q>The principle: do more while actually doing less</q>
 
         <span class="tip rotating">hint: integrate, automate</span>
     </div>
@@ -271,6 +273,45 @@ done
             <li>provisioning aware</li>
             <li>still no metadata</li>
             <li>still no decommissioning</li>
+        </ul>
+    </div>
+
+    <div id="eventsReactors" class="step" data-x="1700" data-y="-300">
+        <img id="ribbon" src="media/ribbon.png" border="0">
+        <p>Option 3: <b>Events/Reactors</b></p>
+        <ul>
+            <li>salt 0.10.5 adds event APIs</li>
+            <li>listen for key add/delete</li>
+            <li>integrates with provisioning</li>
+            <li>0.11.0 has builtin event support (Reactors)</li>
+        </ul>
+    </div>
+
+    <div id="eventsListener" class="step" data-x="2700" data-y="-300">
+        <p>Event listener daemon
+        <span class="smaller">(started from inittab or upstart):</span>
+        </p>
+        <pre>
+import salt.utils.event
+import salt.client
+
+event = salt.utils.event.MasterEvent('/var/run/salt')
+
+evt_generator=event.iter_events(tag='auth',full=True)
+for data in evt_generator:
+    # save event data in <span style="color:red;">redis</span> for batch processing
+    # batch processing prevents chatty interaction
+    # with opennms
+        </pre>
+    </div>
+
+    <div id="evenstRedis" class="step" data-x="3700" data-y="-300">
+        <p><a class="redis" href="http://redis.io">Redis</a> as a shared buffer:</p>
+        <ul>
+            <li>daemon stores minion data (id, ip, metadata, provisioning requisition, ...)</li>
+            <li>pushes deleted/added ids on a queue</li>
+            <li>another thread consumes the queue</li>
+            <li>and generates provision.pl calls</li>
         </ul>
     </div>
 
