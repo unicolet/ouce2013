@@ -26,3 +26,10 @@ On Ubuntu the dependency can be met by running:
 
 ``apt-get install redis-server python-redis``
 
+Running the event listener
+--------------------------
+
+On upstart-enabled systems (Centos 6, Ubuntu 12.04) you can use
+the upstart script in the scripts folder to have the event listener
+start together with the salt-master.
+
