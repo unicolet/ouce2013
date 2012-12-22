@@ -40,7 +40,7 @@
     </div>
 
     <div id="theprinciple" class="step" data-x="-2000" data-y="0">
-        <q>The principle: do more while actually doing less</q>
+        <q>My motto: do more while actually doing less</q>
 
         <span class="tip rotating">hint: integrate, automate</span>
     </div>
@@ -143,43 +143,62 @@ done
         </ul>
     </div>
 
-    <div id="eventsReactors" class="step" data-x="1700" data-y="-300">
+    <div id="eventsReactors" class="step" data-x="1700" data-y="-200">
         <img id="ribbon" src="media/ribbon.png" border="0">
         <p>Option 3: <b>Events/Reactors</b></p>
         <ul>
-            <li>salt 0.10.5 adds event APIs</li>
+            <li>python</li>
+            <li>salt 0.10.5 introduces event APIs</li>
             <li>listen for key add/delete</li>
             <li>integrates with provisioning</li>
-            <li>0.11.0 has builtin event support (Reactors)</li>
+            <li>0.11.0 improves API, builtin event listening (Reactors)</li>
         </ul>
     </div>
 
-    <div id="eventsListener" class="step" data-x="2700" data-y="-300">
+    <div id="eventsListener" class="step" data-x="2700" data-y="-200">
         <p>Event listener daemon
         <span class="smaller">(started from inittab or upstart):</span>
         </p>
         <pre>
-import salt.utils.event
-import salt.client
+event = salt.utils.event.MasterEvent('/var/run/salt/master/')
 
-event = salt.utils.event.MasterEvent('/var/run/salt')
-
-evt_generator=event.iter_events(tag='auth',full=True)
+evt_generator=event.iter_events(tag='key',full=True)
 for data in evt_generator:
-    # save event data in <span style="color:red;">redis</span> for batch processing
-    # batch processing prevents chatty interaction
-    # with opennms
+    payload = data['data']
+    minion_id    = payload['id']
+    if payload.get('act') == 'accept' and payload.get('result'):
+        redis.sadd(add_queue, "%s"%(minion_id))
+    if payload.get('act') == 'delete' and payload.get('result'):
+        redis.sadd(delete_queue, "%s"%(minion_id))
         </pre>
     </div>
 
-    <div id="evenstRedis" class="step" data-x="3700" data-y="-300">
+    <div id="evenstRedis" class="step" data-x="3700" data-y="-200">
         <p><a class="redis" href="http://redis.io">Redis</a> as a shared buffer:</p>
         <ul>
-            <li>daemon stores minion data (id, ip, metadata, provisioning requisition, ...)</li>
+            <li>listener stores minion data (id, ip, metadata, requisition, ...)</li>
             <li>pushes deleted/added ids on a queue</li>
-            <li>another thread consumes the queue</li>
+            <li>another process consumes the queue</li>
             <li>and generates provision.pl calls</li>
         </ul>
+    </div>
+
+    <div id="eventsConsumer" class="step" data-x="1900" data-y="500">
+        <p>Consumer process
+        <span class="smaller">(started from crontab every 20'):</span>
+        </p>
+        <ul>
+            <li>locks queue</li>
+            <li>process delete and add queues</li>
+            <li>query minions for ip and metadata</li>
+            <li>forks provision.pl calls</li>
+            <li>supports dry-run mode</li>
+        </ul>
+    </div>
+
+    <div id="end" class="step" data-x="0" data-y="0" data-scale="6">
+        <p id="qa">Q<span class="smaller">&</span>A</p>
+        <p id="thanks">thanks</p>
     </div>
 
 </div> <!-- close #impress -->
