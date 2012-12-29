@@ -277,18 +277,20 @@ pre {
     padding: 0;
     font-family: "Sonsie One";
     overflow: visible;
+    width: 1000px;
+    margin: 0;
 }
 
 #start .withsalt {
-    font-size: 44px;
+    font-size: 64px;
     color: #00A0D9;
-    text-shadow: -1px -1px 2px rgba(100,100,100,0.9);
+    text-shadow: -1px -1px 1px rgba(100,100,100,0.9);
 }
 
 #start .maintitle {
-    font-size: 60px;
+    font-size: 80px;
     color: #00A0D9;
-    text-shadow: -1px -1px 2px rgba(100,100,100,0.9);
+    text-shadow: -1px -1px 1px rgba(100,100,100,0.9);
 }
 
 #start .footnote {
@@ -321,7 +323,7 @@ pre {
     display: inline-block;
     font-size: 24px;
     position: absolute;
-    bottom: -2em;
+    bottom: -4em;
     right: 0em;
 
     -webkit-transition: 0.5s;
@@ -331,7 +333,7 @@ pre {
     transition:         0.5s;
 }
 
-#theprinciple q {
+#theprinciple {
     text-align: center;
 }
 
