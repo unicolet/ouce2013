@@ -23,6 +23,9 @@
 
 <body class="impress-not-supported">
 
+<div id="backgroundscene">
+
+</div>
 <span id="prezlink">bit.ly/aaa</span>
 <div class="fallback-message">
     <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
@@ -35,7 +38,7 @@
         <span class="maintitle">
             OpenNMS, meet Configuration Management
         </span>
-        <span class="withsalt">(with <a href="http://www.saltstack.org">SaltStack</a>)</span>
+        <span class="withsalt">(with SaltStack)</span>
         <span class="footnote">OUCE 2013 - <a href="https://twitter.com/AFactotum">@afactotum</a></span>
     </div>
 
@@ -205,7 +208,19 @@ for data in evt_generator:
 </div> <!-- close #impress -->
 
 <script src="js/impress.js"></script>
-<script>impress().init();</script>
+<script>
+    impress().init();
+
+    var backgroundscene=document.getElementById("backgroundscene");
+    document.getElementById("start").addEventListener("impress:stepenter", function (event) {
+        backgroundscene.classList.add("wood-background");
+        backgroundscene.style.display="block";
+    }, false);
+    document.getElementById("start").addEventListener("impress:stepleave", function (event) {
+        backgroundscene.classList.remove("wood-background");
+        backgroundscene.style.display="none";
+    }, false);
+</script>
 
 <!--
     

@@ -83,15 +83,11 @@ table {
 */
 body {
     font-family: 'Oxygen', sans-serif;
-    min-height: 740px;
-    
-    background: rgb(254, 254, 254);
-    /*background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(rgb(240, 240, 240)), to(rgb(190, 190, 190)));
-    background: -webkit-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
-    background:    -moz-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
-    background:     -ms-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
-    background:      -o-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
-    background:         radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));*/
+    min-height: 740px;    
+}
+
+.body-default {
+    background: rgb(251, 251, 251);
 }
 
 /*
@@ -203,6 +199,12 @@ pre {
     left: 0;
 }
 
+#backgroundscene {
+    position: absolute;
+    width:100%;
+    height:100%;
+}
+
 /*
     ... and we enhance the styles for impress.js.
     
@@ -308,6 +310,10 @@ pre {
 /* make the first slide invisible when we move past it */
 #start.past {
     opacity: 0;
+}
+
+.wood-background {
+    background: url(../media/wood_pattern.png);
 }
 
 /* classes suitable for smaller blocks of text, like explanations, tips, etc */
