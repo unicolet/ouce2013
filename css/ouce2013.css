@@ -342,7 +342,7 @@ div#backgroundscene.samurai-background p {
 
 .tip {
     display: inline-block;
-    font-size: 24px;
+    font-size: 80%;
     position: absolute;
     bottom: -4em;
     right: 0em;
@@ -479,7 +479,7 @@ a.saltstack {
 #thanks {
     overflow: visible;
     position: absolute;
-    bottom:0;
+    bottom:-1em;
     right:0;
 }
 
