@@ -10,7 +10,7 @@
     <meta name="description" content="describe integration between OpenNMS and SaltStakc so that nodes are automatically added to OpenNMS as soon as they are processed by Salt" />
     <meta name="author" content="Umberto Nicoletti" />
 
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,600italic,700italic,300,400,800" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Sonsie+One' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
     <!--
@@ -24,7 +24,7 @@
 <body class="impress-not-supported">
 
 <div id="backgroundscene">
-
+    <p class="smaller">http://www.flickr.com/photos/toasty/915288758/</p>
 </div>
 <span id="prezlink">bit.ly/aaa</span>
 <div class="fallback-message">
@@ -42,21 +42,33 @@
         <span class="footnote">OUCE 2013 - <a href="https://twitter.com/AFactotum">@afactotum</a></span>
     </div>
 
-    <div id="theprinciple" class="step" data-x="-2000" data-y="0">
-        <q>My motto:<br/>
-        do more while actually doing less</q>
+    <div id="motto" class="step" data-x="-2000" data-y="0">
+        <span id="line1" class="line">My motto:</span>
+        <span id="line2" class="line">do more while</span>
+        <span id="line3" class="line">actually</span>
+        <span id="line4" class="line">working less</span>
 
         <span class="tip rotating">hint: integrate, automate</span>
     </div>
 
     <div id="scenario" class="step" data-x="-2000" data-y="-500">
-        <p>Ingredients:</p>
+        <p>Scenario:</p>
             <ul>
                 <li class="onms">OpenNMS</li>
                 <li class="salt">Salt Stack</li>
                 <li class="vsphere">vSphere 4</li>
                 <li class="script">a custom vm provisioning script</li>
             </ul>
+    </div>
+
+    <div id="bigpicture" class="step" data-x="-3000" data-y="-500">
+        <p><img src="media/bigpicture.png"></p>
+    </div>
+
+    <div id="bigpictureoverlay" class="step" data-x="-3000" data-y="-500">
+        <p style="text-align: center;font-weight: bold;">I have an idea!<br/>Since all nodes are configured with Salt why not
+            let Salt maintain nodes in OpenNMS too?
+        </p>
     </div>
 
     <div id="aboutsalt" class="step" data-x="-2300" data-y="-1200">
@@ -74,10 +86,10 @@
     <div id="options" class="step" data-x="-1500" data-y="-1000">
         <p>Overview of our options:</p>
             <ul>
-                <li class="onms">New suspect</li>
-                <li class="salt">DNS importer</li>
-                <li class="vsphere">Returners</li>
-                <li class="script">Events/Reactors</li>
+                <li class="">New suspect</li>
+                <li class="">DNS importer</li>
+                <li class="" style="text-decoration:line-through">Returners</li>
+                <li class="">Events/Reactors</li>
             </ul>
     </div>
 
@@ -200,6 +212,10 @@ for data in evt_generator:
         </ul>
     </div>
 
+    <div id="recap" class="step" data-x="2900" data-y="500">
+        <p><img src="media/bigpicture_recap.png"></p>
+    </div>
+
     <div id="end" class="step" data-x="0" data-y="0" data-scale="6">
         <p id="qa">Q<span class="smaller">&</span>A</p>
         <p id="thanks">thanks</p>
@@ -213,11 +229,11 @@ for data in evt_generator:
 
     var backgroundscene=document.getElementById("backgroundscene");
     document.getElementById("start").addEventListener("impress:stepenter", function (event) {
-        backgroundscene.classList.add("wood-background");
+        backgroundscene.classList.add("samurai-background");
         backgroundscene.style.display="block";
     }, false);
     document.getElementById("start").addEventListener("impress:stepleave", function (event) {
-        backgroundscene.classList.remove("wood-background");
+        backgroundscene.classList.remove("samurai-background");
         backgroundscene.style.display="none";
     }, false);
 </script>
