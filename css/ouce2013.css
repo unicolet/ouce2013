@@ -213,6 +213,7 @@ pre {
 .impress-enabled .step {
     margin: 0;
     opacity: 0.25;
+    border: 1px solid transparent;
 
     -webkit-transition: opacity 1s;
     -moz-transition:    opacity 1s;
@@ -439,7 +440,7 @@ div.step.present pre {
 
 
 #eventsReactors {
-    border-top: 1px solid #555;
+    border-top: 1px solid #ff39b8;
 }
 
 #ribbon {
@@ -487,6 +488,30 @@ a.saltstack {
     from {rotation: 10deg; }
     to {rotation: 350deg;}
 }
+
+.option1.present, .option1.past {
+    border: 1px solid #4bd646;
+}
+
+.option2.present, .option2.past {
+    border: 1px solid #ffa308;
+}
+
+.option3.present, .option3.past {
+    border: 1px solid #f20090;
+}
+li.option1 {
+    color:#4bd646;
+}
+
+li.option2 {
+    color: #ffa308;
+}
+
+li.option3 {
+    color:#f20090;
+}
+
 
 /*
     We also make other steps visible and give them a pointer cursor using the

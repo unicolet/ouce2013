@@ -26,7 +26,7 @@
 <div id="backgroundscene">
     <p class="smaller">http://www.flickr.com/photos/toasty/915288758/</p>
 </div>
-<span id="prezlink">bit.ly/aaa</span>
+<span id="prezlink">bit.ly/ouce2013</span>
 <div class="fallback-message">
     <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
     <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
@@ -86,14 +86,14 @@
     <div id="options" class="step" data-x="-1500" data-y="-1000">
         <p>Overview of our options:</p>
             <ul>
-                <li class="">New suspect</li>
-                <li class="">DNS importer</li>
+                <li class="option1">New suspect</li>
+                <li class="option2">DNS importer</li>
+                <li class="option3">Events/Reactors</li>
                 <li class="" style="text-decoration:line-through">Returners</li>
-                <li class="">Events/Reactors</li>
             </ul>
     </div>
 
-    <div id="newsuspect" class="step" data-x="-800" data-y="-1100">
+    <div id="newsuspect" class="step option1" data-x="-800" data-y="-1100">
         <p>Option 1: <b>new suspect</b></p>
         <pre>
 #!/bin/bash
@@ -109,7 +109,7 @@ done
         <span class="smaller">add this script to crontab on salt master</span>
     </div>
 
-    <div id="newsuspectdiscussion" class="step" data-x="-800" data-y="-1600">
+    <div id="newsuspectdiscussion" class="step option1" data-x="-800" data-y="-1700">
         <p><b>New suspect</b>: dis/advantages</p>
             <ul>
                 <li>(too) simple and it works</li>
@@ -120,7 +120,7 @@ done
     </div>
 
 
-    <div id="dns" class="step" data-x="100" data-y="-1100">
+    <div id="dns" class="step option2" data-x="150" data-y="-1100">
         <p>Option 2: <b>DNS importer</b></p>
             <ul>
                 <li>salt generates one or more zone files</li>
@@ -134,7 +134,7 @@ done
         </pre>
     </div>
 
-    <div id="dsnssalt" class="step" data-x="1050" data-y="-1000" data-z="200">
+    <div id="dsnssalt" class="step option2" data-x="1100" data-y="-1000" data-z="200">
         <p>DNS zone generation in <b>Salt</b></p>
 <pre id="saltdnszone">
 @ in soa localhost. root 1 3H 15M 1W 1D
@@ -149,7 +149,7 @@ done
         <span class="verysmall">https://gist.github.com/3987451</span>
     </div>
 
-    <div id="dsndiscussion" class="step" data-x="950" data-y="-1500">
+    <div id="dsndiscussion" class="step option2" data-x="1100" data-y="-1550">
         <p><b>DNS</b>: dis/advantages</p>
         <ul>
             <li>no coding required</li>
@@ -159,7 +159,7 @@ done
         </ul>
     </div>
 
-    <div id="eventsReactors" class="step" data-x="1700" data-y="-200">
+    <div id="eventsReactors" class="step option3" data-x="1700" data-y="-200">
         <img id="ribbon" src="media/ribbon.png" border="0">
         <p>Option 3: <b>Events/Reactors</b></p>
         <ul>
@@ -171,7 +171,7 @@ done
         </ul>
     </div>
 
-    <div id="eventsListener" class="step" data-x="2700" data-y="-200">
+    <div id="eventsListener" class="step option3" data-x="2700" data-y="-200">
         <p>Event listener daemon
         <span class="smaller">(started from inittab or upstart):</span>
         </p>
@@ -189,7 +189,7 @@ for data in evt_generator:
         </pre>
     </div>
 
-    <div id="evenstRedis" class="step" data-x="3700" data-y="-200">
+    <div id="evenstRedis" class="step option3" data-x="3700" data-y="-200">
         <p><a class="redis" href="http://redis.io">Redis</a> as a shared buffer:</p>
         <ul>
             <li>listener stores minion data (id, ip, metadata, requisition, ...)</li>
@@ -199,7 +199,7 @@ for data in evt_generator:
         </ul>
     </div>
 
-    <div id="eventsConsumer" class="step" data-x="1900" data-y="500">
+    <div id="eventsConsumer" class="step option3" data-x="1900" data-y="500">
         <p>Consumer process
         <span class="smaller">(started from crontab every 20'):</span>
         </p>
@@ -212,13 +212,13 @@ for data in evt_generator:
         </ul>
     </div>
 
-    <div id="recap" class="step" data-x="2900" data-y="500">
+    <div id="recap" class="step option3" data-x="2900" data-y="550">
         <p><img src="media/bigpicture_recap.png"></p>
     </div>
 
     <div id="end" class="step" data-x="0" data-y="0" data-scale="6">
         <p id="qa">Q<span class="smaller">&</span>A</p>
-        <p id="codelink">Code: <a href="https://github.com/unicolet/ouce2013">github.com/unicolet/ouce2013</a></p>
+        <p id="codelink">Code & slides: <a href="https://github.com/unicolet/ouce2013">bit.ly/ouce2013</a></p>
         <p id="thanks">thanks</p>
     </div>
 
