@@ -163,15 +163,20 @@ done
         <img id="ribbon" src="media/ribbon.png" border="0">
         <p>Option 3: <b>Events/Reactors</b></p>
         <ul>
-            <li>salt 0.10.5 introduces event APIs</li>
-            <li>python</li>
+            <li>salt 0.10.5 introduced python event APIs</li>
             <li>listen for key add/delete</li>
-            <li>integrates with provisioning</li>
-            <li>0.11.0 improves API, builtin event listening (Reactors)</li>
+            <li>integrate with provisioning</li>
+            <li>0.11.0 improves API with builtin event listening (Reactors)</li>
         </ul>
     </div>
 
-    <div id="eventsListener" class="step option3" data-x="2700" data-y="-200">
+    <div id="eventsOverview" class="step option3" data-x="2700" data-y="-200" data-scale="0.7">
+        <p>
+            <img src="media/option3_details.png">
+        </p>
+    </div>
+
+    <div id="eventsListener" class="step option3" data-x="3700" data-y="-200">
         <p>Event listener daemon
         <span class="smaller">(started from inittab or upstart):</span>
         </p>
@@ -189,17 +194,17 @@ for data in evt_generator:
         </pre>
     </div>
 
-    <div id="evenstRedis" class="step option3" data-x="3700" data-y="-200">
-        <p><a class="redis" href="http://redis.io">Redis</a> as a shared buffer:</p>
+    <div id="eventsRedis" class="step option3" data-x="1900" data-y="550">
+        <p><a class="redis" href="http://redis.io">Redis</a>: shared queue and K/V store:</p>
         <ul>
-            <li>listener stores minion data (id, ip, metadata, requisition, ...)</li>
-            <li>pushes deleted/added ids on a queue</li>
-            <li>another process consumes the queue</li>
-            <li>and generates provision.pl calls</li>
+            <li>listener pushes deleted/added minion ids</li>
+            <li>consumer fetches ids</li>
+            <li>consumer calls <em>provision.pl</em></li>
+            <li>consumer stores the opennms node id and requisition name</li>
         </ul>
     </div>
 
-    <div id="eventsConsumer" class="step option3" data-x="1900" data-y="500">
+    <div id="eventsConsumer" class="step option3" data-x="2900" data-y="550">
         <p>Consumer process
         <span class="smaller">(started from crontab every 20'):</span>
         </p>
@@ -212,8 +217,19 @@ for data in evt_generator:
         </ul>
     </div>
 
-    <div id="recap" class="step option3" data-x="2900" data-y="550">
-        <p><img src="media/bigpicture_recap.png"></p>
+    <div id="option3Recap" class="step option3" data-x="3900" data-y="550">
+        <p><b>Events</b>: dis/advantages</p>
+            <ul>
+                <li>synchronous with ops</li>
+                <li>provisioning aware</li>
+                <li>supports metadata</li>
+                <li>supports decommissioning</li>
+                <li>a little coding required</li>
+            </ul>
+    </div>
+
+    <div id="option3Win" class="step" data-x="3900" data-y="550">
+        <p>WIN!</p>
     </div>
 
     <div id="end" class="step" data-x="0" data-y="0" data-scale="6">

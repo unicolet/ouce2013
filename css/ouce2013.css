@@ -463,6 +463,26 @@ a.saltstack {
     padding-left: 40px;
 }
 
+#eventsOverview {
+    width: 950px;
+}
+
+
+#option3Win.future, #option3Win.past {
+    display:none;
+}
+#option3Win.present {
+    display: block;
+}
+
+#option3Win p {
+    text-align: center;
+    font-weight: bold;
+    font-size: 100px;
+    text-shadow: 0px 0px 10px #00a0d9;
+    letter-spacing: 0.4em;
+}
+
 /* hide */
 #end.future, #end.past {
     display: none;
