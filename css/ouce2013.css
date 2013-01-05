@@ -450,16 +450,12 @@ div.step.present pre {
 }
 
 a.redis {
-    background-image: url(../media/redis.png);
-    background-repeat: no-repeat;
-    background-position: left;
+    background: url(../media/redis.png) no-repeat left;
     padding-left: 40px;
 }
 
 a.saltstack {
-    background-image: url(../media/salt-icon-32.png);
-    background-repeat: no-repeat;
-    background-position: left;
+    background: url(../media/salt-icon-32.png) no-repeat left;
     padding-left: 40px;
 }
 
