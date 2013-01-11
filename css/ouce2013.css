@@ -309,14 +309,31 @@ pre {
     opacity: 1;
 }
 
-.samurai-background {
-    background: url(../media/samurai_figurines.png) no-repeat bottom right;
-    background-size: 40%;
+div#backgroundscene {
+    opacity: 0;
+    -webkit-transition: opacity 1s;
+    -moz-transition:    opacity 1s;
+    -ms-transition:     opacity 1s;
+    -o-transition:      opacity 1s;
+    transition:         opacity 1s;
 }
 
-div#backgroundscene.samurai-background p {
+div#backgroundscene.samurai-background {
+    background: url(../media/samurai_figurines.png) no-repeat bottom right;
+    background-size: 40%;
     opacity: 1;
 }
+
+div#backgroundscene.merlin-background {
+    background: url(../media/sword-disneyscreencaps.com-4303.jpg) no-repeat bottom right;
+    background-size:100% 100%;
+    opacity: 1;
+}
+
+div#backgroundscene.merlin-background p {
+    opacity: 0;
+}
+
 
 #backgroundscene p {
     opacity:0;
@@ -358,6 +375,20 @@ div#backgroundscene.samurai-background p {
 #motto {
     padding:0;
     overflow: visible;
+    color: rgb(102, 102, 102);
+    text-shadow: 0 2px 2px rgba(0, 0, 0, .1);
+}
+
+#motto.present {
+    color: #f5f5f5;
+    text-shadow: 0px 0px 10px #ccc;
+
+    -webkit-transition: color 0.5s;
+    -moz-transition:    color 0.5s;
+    -ms-transition:     color 0.5s;
+    -o-transition:      color 0.5s;
+    transition:         color 0.5s;
+
 }
 
 #motto span.line {
