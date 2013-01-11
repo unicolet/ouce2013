@@ -61,6 +61,7 @@
             </ul>
     </div>
 
+    <!-- TODO: perhaps remove or shade the right branch as that part is missing at this stage -->
     <div id="bigpicture" class="step" data-x="-3000" data-y="-500">
         <p><img src="media/bigpicture.png"></p>
     </div>
@@ -247,11 +248,16 @@ for data in evt_generator:
     var backgroundscene=document.getElementById("backgroundscene");
     document.getElementById("start").addEventListener("impress:stepenter", function (event) {
         backgroundscene.classList.add("samurai-background");
-        backgroundscene.style.display="block";
     }, false);
     document.getElementById("start").addEventListener("impress:stepleave", function (event) {
         backgroundscene.classList.remove("samurai-background");
-        backgroundscene.style.display="none";
+    }, false);
+
+    document.getElementById("motto").addEventListener("impress:stepenter", function (event) {
+        backgroundscene.classList.add("merlin-background");
+    }, false);
+    document.getElementById("motto").addEventListener("impress:stepleave", function (event) {
+        backgroundscene.classList.remove("merlin-background");
     }, false);
 </script>
 
