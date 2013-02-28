@@ -19,6 +19,12 @@ from salt.exceptions import *
 from redis import Redis, ConnectionError, ResponseError
 from redis import VERSION as redis_VERSION
 
+class ProvisionError(Exception):
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        return "provision.pl script exit code: %s"%repr(self.value)
+
 parser = OptionParser()
 parser.add_option("-H", "--host", dest="opennms_host",
                   help="OpenNMS host (full url as in http://localhost/opennms/rest)",
@@ -103,7 +109,9 @@ changed_requisitions = set()
 def run_command(command):
     log.debug( "About to run: %s"%(command) )
     if not dry_run:
-        return os.system(command)
+        exit_code=os.system(command)
+        if exit_code != 0:
+            raise ProvisionError(exit_code)
 
 # add new minions to opennms
 for salt_minion in redis.lrange(salt_queue,0,-1):
