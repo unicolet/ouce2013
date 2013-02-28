@@ -1,3 +1,4 @@
+#!/usr/bin/python
 from optparse import OptionParser
 import salt.client, sys, os, hashlib, logging
 from salt.exceptions import *
