@@ -1,10 +1,23 @@
 #!/usr/bin/python
+
+import sys
+# check python version
+req_version = (2,6)
+cur_version = sys.version_info
+if cur_version < req_version:
+   print "Python %s required, you have %s."%(req_version,cur_version)
+   sys.exit(1)
+
+try:
+    import salt.client, os, hashlib, logging
+except ImportError:
+   print "No salt client python module found: are you using the same python as Salt?"
+   sys.exit(1)
+
 from optparse import OptionParser
-import salt.client, sys, os, hashlib, logging
 from salt.exceptions import *
 from redis import Redis, ConnectionError, ResponseError
-
-
+from redis import VERSION as redis_VERSION
 
 parser = OptionParser()
 parser.add_option("-H", "--host", dest="opennms_host",
@@ -25,10 +38,13 @@ parser.add_option("-u", "--user",
 parser.add_option("-p", "--password",
                   dest="password", default="admin",
                   help="OpenNMS password")
+parser.add_option("-s", "--script",
+                  dest="provision", default="/usr/share/opennms/bin/provision.pl",
+                  help="Full path to OpenNMS provision.pl script")
 
 (options, args) = parser.parse_args()
 
-provision_cmd = '/usr/share/opennms/bin/provision.pl --url %s --user %s --password %s '%(options.opennms_host,options.user,options.password)
+provision_cmd = '%s --url %s --user %s --password %s '%(options.provision,options.opennms_host,options.user,options.password)
 salt_queue    = 'saltq'
 redis         = Redis(host='127.0.0.1', port=6379, db=0)
 debug         = options.verbose
@@ -48,12 +64,18 @@ else:
     log.setLevel(logging.DEBUG)
     ch.setLevel(logging.DEBUG)
 
-# check python version
-req_version = (2,6)
-cur_version = sys.version_info
+# check python-redis version
+req_version = (2,4,5)
+cur_version = redis_VERSION
 if cur_version < req_version:
-   log.error("Python %s required, you have %s."%(req_version,cur_version))
-   exit
+   log.error("Redis %s required, you have %s. Upgrade using easy_install or pip"%(req_version,cur_version))
+   sys.exit(1)
+
+# check paths
+if not os.path.exists(options.provision):
+   log.error("Provision.pl not found at path = %s Use the -s option to specify the full path."%(options.provision))
+   sys.exit(1)
+
 
 log.info("Starting (options: dryrun=%s, debug=%s, force=%s, host=%s)"%(dry_run,debug,options.force,options.opennms_host))
 
@@ -68,7 +90,7 @@ else:
     redis.set('opennms_salt_lock', pid)
     if redis.get('opennms_salt_lock') != pid :
         log.warning ( "Lock stolen by process with pid %s"%(redis.get('opennms_salt_lock')) )
-        exit
+        sys.exit(1)
     else:
         # expire the lock after 30 minutes in case the process crashes
         log.debug("Add expire timer to lock and set to 30 min")
@@ -128,7 +150,7 @@ for salt_minion in redis.lrange(salt_queue,0,-1):
                 changed_requisitions.add(requisition)
             else:
                 log.info( "Minion %s has no requisition, skipping"%(minion_id) )
-        except SaltReqTimeoutError as timeout:
+        except SaltReqTimeoutError, timeout:
             log.error( "Salt timeout adding minion %s. Is the minion up?"%(minion_id) )
         except:
             log.error( "Error adding minion %s : %s"%(minion_id, sys.exc_info()[0]) )
