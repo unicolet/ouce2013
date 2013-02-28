@@ -135,7 +135,7 @@ for salt_minion in redis.lrange(salt_queue,0,-1):
                 run_command( "%s node remove %s %s"%(provision_cmd, requisition, nodeid) )
                 if not dry_run:
                     redis.lrem(salt_queue, salt_minion, 1)
-                changed_requisitions[requisition]=1
+                changed_requisitions.add(requisition)
         except:
             log.error( "Error removing minion %s : %s"%(minion_id, sys.exc_info()[0]) )
 
