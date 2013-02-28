@@ -4,6 +4,8 @@ import salt.client, sys, os, hashlib, logging
 from salt.exceptions import *
 from redis import Redis, ConnectionError, ResponseError
 
+
+
 parser = OptionParser()
 parser.add_option("-H", "--host", dest="opennms_host",
                   help="OpenNMS host (full url as in http://localhost/opennms/rest)",
@@ -45,6 +47,13 @@ if not debug:
 else:
     log.setLevel(logging.DEBUG)
     ch.setLevel(logging.DEBUG)
+
+# check python version
+req_version = (2,6)
+cur_version = sys.version_info
+if cur_version < req_version:
+   log.error("Python %s required, you have %s."%(req_version,cur_version))
+   exit
 
 log.info("Starting (options: dryrun=%s, debug=%s, force=%s, host=%s)"%(dry_run,debug,options.force,options.opennms_host))
 
