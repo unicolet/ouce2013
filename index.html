@@ -113,7 +113,7 @@ done
     <div id="newsuspectdiscussion" class="step option1" data-x="-800" data-y="-1700">
         <p><b>New suspect</b>: dis/advantages</p>
             <ul>
-                <li>(too) simple and it works</li>
+                <li>(too) simple but it works</li>
                 <li>unaware of provisioning</li>
                 <li>no metadata</li>
                 <li>no decommissioning</li>
@@ -178,7 +178,7 @@ done
     </div>
 
     <div id="eventsListener" class="step option3" data-x="3700" data-y="-200">
-        <p>Event listener daemon
+        <p>Event listener service
         <span class="smaller">(started from inittab or upstart):</span>
         </p>
         <pre>
@@ -189,18 +189,18 @@ for data in evt_generator:
     payload = data['data']
     minion_id    = payload['id']
     if payload.get('act') == 'accept' and payload.get('result'):
-        redis.sadd(add_queue, "%s"%(minion_id))
+        minion_id=("%s/%s" % ('add',minion_id))
     if payload.get('act') == 'delete' and payload.get('result'):
-        redis.sadd(delete_queue, "%s"%(minion_id))
+        minion_id=("%s/%s" % ('delete',minion_id))
+    redis.rpush(salt_queue, "%s"%(minion_id))
         </pre>
     </div>
 
     <div id="eventsRedis" class="step option3" data-x="1900" data-y="550">
         <p><a class="redis" href="http://redis.io">Redis</a>: shared queue and K/V store:</p>
         <ul>
-            <li>listener pushes deleted/added minion ids</li>
-            <li>consumer fetches ids</li>
-            <li>consumer calls <em>provision.pl</em></li>
+            <li>listener pushes deleted/added minion ids to a queue</li>
+            <li>consumer fetches ids (in order)</li>
             <li>consumer stores the opennms node id and requisition name</li>
         </ul>
     </div>
@@ -211,7 +211,7 @@ for data in evt_generator:
         </p>
         <ul>
             <li>locks queue</li>
-            <li>process delete and add queues</li>
+            <li>process queue</li>
             <li>query minions for ip and metadata</li>
             <li>forks provision.pl calls</li>
             <li>supports dry-run mode</li>
@@ -225,12 +225,29 @@ for data in evt_generator:
                 <li>provisioning aware</li>
                 <li>supports metadata</li>
                 <li>supports decommissioning</li>
-                <li>a little coding required</li>
+                <li>some coding required</li>
             </ul>
     </div>
 
-    <div id="option3Win" class="step" data-x="3900" data-y="550">
-        <p>WIN!</p>
+    <div id="option3pillar" class="step" data-x="4900" data-y="-50">
+        <p class="center">The metadata as defined inside Salt</p>
+        <p>&nbsp;</p>
+<pre>
+[root@saltmaster ~]# cat /srv/pillar/provisioning.sls
+requisition: mainsite
+opennms_categories: 'production,servers'
+opennms_assetinfo: { comment: 'Server a' }
+</pre>
+    </div>
+
+    <div id="option3sshot1" class="step" data-x="4900" data-y="550">
+        <p class="center">How it looks like in OpenNMS</p>
+        <img src="media/opennms_salt_requisition.png">
+    </div>
+
+    <div id="option3sshot2" class="step" data-x="4900" data-y="1050">
+        <p class="center">The node page</p>
+        <img src="media/opennms_provisioned_node.png">
     </div>
 
     <div id="end" class="step" data-x="0" data-y="0" data-scale="6">

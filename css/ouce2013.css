@@ -311,11 +311,11 @@ pre {
 
 div#backgroundscene {
     opacity: 0;
-    -webkit-transition: opacity 1s;
-    -moz-transition:    opacity 1s;
-    -ms-transition:     opacity 1s;
-    -o-transition:      opacity 1s;
-    transition:         opacity 1s;
+    -webkit-transition: opacity 1.5s;
+    -moz-transition:    opacity 1.5s;
+    -ms-transition:     opacity 1.5s;
+    -o-transition:      opacity 1.5s;
+    transition:         opacity 1.5s;
 }
 
 div#backgroundscene.samurai-background {
@@ -375,7 +375,7 @@ div#backgroundscene.merlin-background p {
 #motto {
     padding:0;
     overflow: visible;
-    color: rgb(102, 102, 102);
+    color: #f5f5f5;
     text-shadow: 0 2px 2px rgba(0, 0, 0, .1);
 }
 
@@ -494,22 +494,6 @@ a.saltstack {
     width: 950px;
 }
 
-
-#option3Win.future, #option3Win.past {
-    display:none;
-}
-#option3Win.present {
-    display: block;
-}
-
-#option3Win p {
-    text-align: center;
-    font-weight: bold;
-    font-size: 100px;
-    text-shadow: 0px 0px 10px #00a0d9;
-    letter-spacing: 0.4em;
-}
-
 /* hide */
 #end.future, #end.past {
     display: none;
@@ -558,7 +542,9 @@ li.option2 {
 li.option3 {
     color:#f20090;
 }
-
+p.center {
+    text-align: center;
+}
 
 /*
     We also make other steps visible and give them a pointer cursor using the
