@@ -48,10 +48,8 @@ which ones are available run:
 Installing provision.pl
 -----------------------
 
-*provision.pl* is property of the OpenNMS project.
-
-The integration uses a local copy of *provision.pl*. There is a
-recent version of provision.pl in the saltopennms folder.
+The integration requires a working local copy of *provision.pl*.
+There is a fairly recent version of provision.pl in the saltopennms folder.
 
 If your system does not have all perl dependencies required by
 provision.pl you can install them by either using the package manager
@@ -63,4 +61,5 @@ Example of using CPAN:
      cpan > install [ModuleName]
 
 
+*provision.pl* is property of the OpenNMS project.
 
