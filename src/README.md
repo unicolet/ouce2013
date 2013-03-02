@@ -41,3 +41,4 @@ On upstart-enabled systems (Centos 6, Ubuntu 12.04) you can use
 the upstart script in the scripts folder to have the event listener
 start together with the salt-master.
 
+More detailed instructions are in the INSTALL.md file.
