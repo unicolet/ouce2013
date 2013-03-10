@@ -42,16 +42,7 @@
         <span class="footnote">OUCE 2013 - <a href="https://twitter.com/AFactotum">@afactotum</a></span>
     </div>
 
-    <div id="motto" class="step" data-x="-2000" data-y="0">
-        <span id="line1" class="line">My motto:</span>
-        <span id="line2" class="line">do more while</span>
-        <span id="line3" class="line">actually</span>
-        <span id="line4" class="line">working less</span>
-
-        <span class="tip rotating">hint: integrate, automate</span>
-    </div>
-
-    <div id="scenario" class="step" data-x="-2000" data-y="-500">
+    <div id="scenario" class="step" data-x="-2400" data-y="200">
         <p>Scenario:</p>
             <ul>
                 <li class="onms">OpenNMS</li>
@@ -72,16 +63,30 @@
         </p>
     </div>
 
-    <div id="aboutsalt" class="step" data-x="-2300" data-y="-1200">
+    <div id="aboutsalt" class="step" data-x="-2400" data-y="-1200">
         <p>What is <a href="http://saltstack.org" class="saltstack">Salt Stack</a> anyway?</p>
             <ul>
                 <li class="onms">Configuration management</li>
                 <li class="salt">Remote execution</li>
                 <li class="vsphere">Python</li>
                 <li class="script">Open Source</li>
-                <li class="script">Growing fast</li>
+                <li class="script">Use <a href="http://www.yaml.org/">YAML</a> files for configuration</li>
             </ul>
         <span class="tip awesome appearing">oh yeah: it's awesome!</span>
+    </div>
+
+    <div id="aboutsalt2" class="step" data-x="-2000" data-y="-1800">
+        <p>What is <a href="http://saltstack.org" class="saltstack">Salt Stack</a> anyway? (2)</p>
+            <ul>
+                <li>0MQ based comm layer</li>
+                <li>synchronous</li>
+                <li>PKI for comm auth/encryption</li>
+                <li class="script">Growing fast:
+                    <ul>
+                        <li><a href="https://github.com/blog/1359-the-octoverse-in-2012">ranked 8th</a> on GitHub by number of contributors in 2012</li>
+                    </ul>
+                </li>
+            </ul>
     </div>
 
     <div id="options" class="step" data-x="-1500" data-y="-1000">
@@ -225,7 +230,7 @@ for data in evt_generator:
                 <li>provisioning aware</li>
                 <li>supports metadata</li>
                 <li>supports decommissioning</li>
-                <li>some coding required</li>
+                <li>some coding required ( ~ 200 LOC )</li>
             </ul>
     </div>
 
@@ -237,7 +242,10 @@ for data in evt_generator:
 requisition: mainsite
 opennms_categories: 'production,servers'
 opennms_assetinfo: { comment: 'Server a' }
+
+
 </pre>
+        <p class="smaller">Tip: place this metadata in <em>motd</em></p>
     </div>
 
     <div id="option3sshot1" class="step" data-x="4900" data-y="550">
@@ -248,6 +256,13 @@ opennms_assetinfo: { comment: 'Server a' }
     <div id="option3sshot2" class="step" data-x="4900" data-y="1050">
         <p class="center">The node page</p>
         <img src="media/opennms_provisioned_node.png">
+    </div>
+
+    <div id="concept" class="step" data-x="-2000" data-y="1000">
+        <span id="line1" class="line">Takeaway:</span>
+        <span id="line1b" class="line">choose</span>
+        <span id="line2" class="line">integration &</span>
+        <span id="line3" class="line">automation</span>
     </div>
 
     <div id="end" class="step" data-x="0" data-y="0" data-scale="6">
@@ -270,10 +285,10 @@ opennms_assetinfo: { comment: 'Server a' }
         backgroundscene.classList.remove("samurai-background");
     }, false);
 
-    document.getElementById("motto").addEventListener("impress:stepenter", function (event) {
+    document.getElementById("concept").addEventListener("impress:stepenter", function (event) {
         backgroundscene.classList.add("merlin-background");
     }, false);
-    document.getElementById("motto").addEventListener("impress:stepleave", function (event) {
+    document.getElementById("concept").addEventListener("impress:stepleave", function (event) {
         backgroundscene.classList.remove("merlin-background");
     }, false);
 </script>

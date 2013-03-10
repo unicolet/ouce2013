@@ -372,14 +372,14 @@ div#backgroundscene.merlin-background p {
     transition:         0.5s;
 }
 
-#motto {
+#concept {
     padding:0;
     overflow: visible;
     color: #f5f5f5;
     text-shadow: 0 2px 2px rgba(0, 0, 0, .1);
 }
 
-#motto.present {
+#concept.present {
     color: #f5f5f5;
     text-shadow: 0px 0px 10px #ccc;
 
@@ -391,29 +391,35 @@ div#backgroundscene.merlin-background p {
 
 }
 
-#motto span.line {
+#concept span.line {
     overflow: visible;
     text-align: center;
     font-family: "Open Sans";
     font-weight: 800;
     font-size: 100px;
     text-transform: uppercase;
-    line-height: 70px;
-    margin: 0;
+    line-height: 130px;
+    margin:0;
     padding:0;
 }
 
 #line1 {
     letter-spacing: 0.30em;
 }
+#line1b {
+    letter-spacing: 0.83em;
+}
+#line2 {
+    letter-spacing: 0.03em;
+}
 #line3 {
-    letter-spacing: 0.44em;
+    letter-spacing: 0.14em;
 }
 #line4 {
     letter-spacing: 0.06em;
 }
 
-#motto.present .rotating {
+#concept.present .rotating {
     -webkit-transform: rotate(10deg);
     -moz-transform:    rotate(10deg);
     -ms-transform:     rotate(10deg);
@@ -483,11 +489,13 @@ div.step.present pre {
 a.redis {
     background: url(../media/redis.png) no-repeat left;
     padding-left: 40px;
+    overflow: visible;
 }
 
 a.saltstack {
     background: url(../media/salt-icon-32.png) no-repeat left;
     padding-left: 40px;
+    overflow: visible;
 }
 
 #eventsOverview {
