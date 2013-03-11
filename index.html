@@ -39,7 +39,7 @@
             OpenNMS, meet Configuration Management
         </span>
         <span class="withsalt">(with SaltStack)</span>
-        <span class="footnote">OUCE 2013 - <a href="https://twitter.com/AFactotum">@afactotum</a></span>
+        <span class="footnote">OUCE 2013 <a href="https://twitter.com/AFactotum">@afactotum</a></span>
     </div>
 
     <div id="scenario" class="step" data-x="-2400" data-y="200">
@@ -79,11 +79,11 @@
         <p>What is <a href="http://saltstack.org" class="saltstack">Salt Stack</a> anyway? (2)</p>
             <ul>
                 <li>0MQ based comm layer</li>
-                <li>synchronous</li>
+                <li>push model</li>
                 <li>PKI for comm auth/encryption</li>
                 <li class="script">Growing fast:
                     <ul>
-                        <li><a href="https://github.com/blog/1359-the-octoverse-in-2012">ranked 8th</a> on GitHub by number of contributors in 2012</li>
+                        <li>in 2012 <a href="https://github.com/blog/1359-the-octoverse-in-2012">ranked 8th</a> on GitHub by number of contributors</li>
                     </ul>
                 </li>
             </ul>
@@ -92,9 +92,21 @@
     <div id="options" class="step" data-x="-1500" data-y="-1000">
         <p>Overview of our options:</p>
             <ul>
-                <li class="option1">New suspect</li>
-                <li class="option2">DNS importer</li>
-                <li class="option3">Events/Reactors</li>
+                <li class="option1">New suspect
+                    <ul>
+                        <li>only as POC</li>
+                    </ul>
+                </li>
+                <li class="option2">DNS importer
+                    <ul>
+                        <li>first version</li>
+                    </ul>
+                </li>
+                <li class="option3">Events/Reactors
+                    <ul>
+                        <li>current version</li>
+                    </ul>
+                </li>
             </ul>
     </div>
 
@@ -225,7 +237,7 @@ for data in evt_generator:
     <div id="option3Recap" class="step option3" data-x="3900" data-y="550">
         <p><b>Events</b>: dis/advantages</p>
             <ul>
-                <li>synchronous with ops</li>
+                <li>aligned with ops</li>
                 <li>provisioning aware</li>
                 <li>supports metadata</li>
                 <li>supports decommissioning</li>
@@ -244,7 +256,7 @@ opennms_assetinfo: { comment: 'Server a' }
 
 
 </pre>
-        <p class="smaller">Tip: place this metadata in <em>motd</em></p>
+        <p class="smaller">Tip: reuse this metadata in the <em>motd</em></p>
     </div>
 
     <div id="option3sshot1" class="step" data-x="4900" data-y="550">
@@ -258,10 +270,13 @@ opennms_assetinfo: { comment: 'Server a' }
     </div>
 
     <div id="concept" class="step" data-x="-2000" data-y="1000">
-        <span id="line1" class="line">Takeaway:</span>
-        <span id="line1b" class="line">choose</span>
-        <span id="line2" class="line">integration &</span>
-        <span id="line3" class="line">automation</span>
+        <span id="line1" class="line">META - Food for Thought</span>
+        <ul>
+            <li>Integrability matters</li>
+            <li>Automation is a requirement</li>
+            <li>Software Defined X (Infrastructure, Network) is here</li>
+            <li>'Let yourself go with the Flow?' Session</li>
+        </ul>
     </div>
 
     <div id="end" class="step" data-x="0" data-y="0" data-scale="6">
@@ -284,12 +299,12 @@ opennms_assetinfo: { comment: 'Server a' }
         backgroundscene.classList.remove("samurai-background");
     }, false);
 
-    document.getElementById("concept").addEventListener("impress:stepenter", function (event) {
-        backgroundscene.classList.add("merlin-background");
-    }, false);
-    document.getElementById("concept").addEventListener("impress:stepleave", function (event) {
-        backgroundscene.classList.remove("merlin-background");
-    }, false);
+    //document.getElementById("concept").addEventListener("impress:stepenter", function (event) {
+    //    backgroundscene.classList.add("merlin-background");
+    //}, false);
+    //document.getElementById("concept").addEventListener("impress:stepleave", function (event) {
+    //    backgroundscene.classList.remove("merlin-background");
+    //}, false);
 </script>
 
 <!--

@@ -302,7 +302,12 @@ pre {
     font-size: 28px;
     position: absolute;
     bottom: -4em;
-    left: -2em;
+    left: -1em;
+}
+
+#start .footnote a {
+    padding-left: 54px;
+    background: transparent url('../media/twitter-icon.png') left no-repeat;
 }
 
 #start.present {
@@ -375,13 +380,11 @@ div#backgroundscene.merlin-background p {
 #concept {
     padding:0;
     overflow: visible;
-    color: #f5f5f5;
-    text-shadow: 0 2px 2px rgba(0, 0, 0, .1);
+    color: #353535;
 }
 
 #concept.present {
-    color: #f5f5f5;
-    text-shadow: 0px 0px 10px #ccc;
+    color: #353535;
 
     -webkit-transition: color 0.5s;
     -moz-transition:    color 0.5s;
@@ -404,7 +407,7 @@ div#backgroundscene.merlin-background p {
 }
 
 #line1 {
-    letter-spacing: 0.30em;
+    letter-spacing: 0.15em;
 }
 #line1b {
     letter-spacing: 0.83em;
