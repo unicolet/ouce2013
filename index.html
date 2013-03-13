@@ -69,7 +69,6 @@
                 <li class="onms">Configuration management</li>
                 <li class="salt">Remote execution</li>
                 <li class="vsphere">Python</li>
-                <li class="script">Open Source</li>
                 <li class="script">Use <a href="http://www.yaml.org/">YAML</a> files for configuration</li>
             </ul>
         <span class="tip awesome appearing">oh yeah: it's awesome!</span>
@@ -89,14 +88,9 @@
             </ul>
     </div>
 
-    <div id="options" class="step" data-x="-1500" data-y="-1000">
+    <div id="options" class="step" data-x="-1000" data-y="-1000">
         <p>Overview of our options:</p>
             <ul>
-                <li class="option1">New suspect
-                    <ul>
-                        <li>only as POC</li>
-                    </ul>
-                </li>
                 <li class="option2">DNS importer
                     <ul>
                         <li>first version</li>
@@ -110,38 +104,11 @@
             </ul>
     </div>
 
-    <div id="newsuspect" class="step option1" data-x="-800" data-y="-1100">
-        <p>Option 1: <b>new suspect</b></p>
-        <pre>
-#!/bin/bash
-KEYS=`salt-key -l acc --no-color | \
-        grep -v "Accepted Keys"`
-for k in $KEYS ; do
-ip=`ping -q -c 1 -t 1 $k | grep PING | \
-       awk '{print $3}' | sed -e "s/[\(\)]//g"`;
-/usr/share/opennms/bin/send-event.pl --interface $ip \
-       uei.opennms.org/internal/discovery/newSuspect;
-done
-        </pre>
-        <span class="smaller">add this script to crontab on salt master</span>
-    </div>
-
-    <div id="newsuspectdiscussion" class="step option1" data-x="-800" data-y="-1700">
-        <p><b>New suspect</b>: review</p>
-            <ul>
-                <li class="check">&#x2713; (too) simple but it works</li>
-                <li class="check">&#x2718; unaware of provisioning</li>
-                <li class="check">&#x2718; no metadata</li>
-                <li class="check">&#x2718; no decommissioning</li>
-            </ul>
-    </div>
-
-
-    <div id="dns" class="step option2" data-x="150" data-y="-1100">
-        <p>Option 2: <b>DNS importer</b></p>
+    <div id="dns" class="step option2" data-x="50" data-y="-1100">
+        <p>Option 1: <b>DNS importer</b></p>
             <ul>
                 <li>salt generates one or more zone files</li>
-                <li>opennms imports the zones</li>
+                <li>opennms imports the zones:</li>
             </ul>
         <pre id="onmsdnszone">
 &lt;requisition-def import-name="linuxservers"
@@ -178,12 +145,12 @@ done
 
     <div id="eventsReactors" class="step option3" data-x="1700" data-y="-200">
         <img id="ribbon" src="media/ribbon.png" border="0">
-        <p>Option 3: <b>Events/Reactors</b></p>
+        <p>Option 2: <b>Events</b></p>
         <ul>
             <li>salt 0.10.5 introduced python event APIs</li>
             <li>listen for key add/delete</li>
             <li>integrate with provisioning</li>
-            <li>0.11.0 improves API with builtin event listening (Reactors)</li>
+            <li>0.11.0 improves API with builtin Reactors</li>
         </ul>
     </div>
 
