@@ -478,6 +478,10 @@ div#backgroundscene.merlin-background p {
     transition-timing-function:         ease-out;
 }
 
+div.step.option2 {
+    width: 980px;
+}
+
 div.step.present pre {
     overflow: visible;
 }
