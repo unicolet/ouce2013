@@ -127,6 +127,10 @@ li {
     overflow: visible;
 }
 
+li.check {
+    list-style: none;
+    margin-left: -1em;
+}
 
 pre {
     overflow: hidden;

@@ -127,12 +127,12 @@ done
     </div>
 
     <div id="newsuspectdiscussion" class="step option1" data-x="-800" data-y="-1700">
-        <p><b>New suspect</b>: dis/advantages</p>
+        <p><b>New suspect</b>: review</p>
             <ul>
-                <li>(too) simple but it works</li>
-                <li>unaware of provisioning</li>
-                <li>no metadata</li>
-                <li>no decommissioning</li>
+                <li class="check">&#x2713; (too) simple but it works</li>
+                <li class="check">&#x2718; unaware of provisioning</li>
+                <li class="check">&#x2718; no metadata</li>
+                <li class="check">&#x2718; no decommissioning</li>
             </ul>
     </div>
 
@@ -167,12 +167,12 @@ done
     </div>
 
     <div id="dsndiscussion" class="step option2" data-x="1100" data-y="-1550">
-        <p><b>DNS</b>: dis/advantages</p>
+        <p><b>DNS</b>: review</p>
         <ul>
-            <li>no coding required</li>
-            <li>provisioning aware</li>
-            <li>still no metadata</li>
-            <li>still no decommissioning</li>
+            <li class="check">&#x2713; no coding required</li>
+            <li class="check">&#x2713; provisioning aware</li>
+            <li class="check">&#x2718; still no metadata</li>
+            <li class="check">&#x2718; still no decommissioning</li>
         </ul>
     </div>
 
@@ -217,8 +217,13 @@ for data in evt_generator:
         <ul>
             <li>listener pushes deleted/added minion ids to a queue</li>
             <li>consumer fetches ids (in order)</li>
-            <li>consumer stores the opennms node id and requisition name</li>
+            <li>consumer stores the opennms node id and requisition name:
+                <pre>
+[root@srvdpis ~]# redis-cli get testserver.xxxxxxxxx
+"mainsite/55bc57cfdeaf95c3320facb6a95a3afce2475cbd"</pre>
+            </li>
         </ul>
+
     </div>
 
     <div id="eventsConsumer" class="step option3" data-x="2900" data-y="550">
@@ -235,13 +240,13 @@ for data in evt_generator:
     </div>
 
     <div id="option3Recap" class="step option3" data-x="3900" data-y="550">
-        <p><b>Events</b>: dis/advantages</p>
+        <p><b>Events</b>: review</p>
             <ul>
-                <li>aligned with ops</li>
-                <li>provisioning aware</li>
-                <li>supports metadata</li>
-                <li>supports decommissioning</li>
-                <li>some coding required ( ~ 200 LOC )</li>
+                <li class="check">&#x2713; aligned with ops</li>
+                <li class="check">&#x2713; provisioning aware</li>
+                <li class="check">&#x2713; supports metadata</li>
+                <li class="check">&#x2713; supports decommissioning</li>
+                <li class="check">&#x2713; coding required (~ 200 LOC)</li>
             </ul>
     </div>
 
